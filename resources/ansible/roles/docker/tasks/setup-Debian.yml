@@ -1,0 +1,36 @@
+---
+- name: Ensure HTTPS transport for APT is installed
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+  become: true
+
+- name: Add Docker key
+  apt_key:
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    url: "{{ docker_repo_key_url }}"
+  become: true
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "{{ docker_repo_url }}"
+    filename: docker
+  become: true
+
+- name: Update
+  raw: apt-get update
+
+- name: Install Docker
+  apt: name=docker-ce state=latest update_cache=yes
+  become: true
+  notify: restart docker
+
+- name: Add user to docker group
+  user: name={{ansible_user}} groups=docker append=yes
+  become: true

@@ -1,0 +1,19 @@
+---
+
+- hosts: build
+  become: yes # Become sudoer
+  gather_facts: no #Log
+  pre_tasks: # Tasks before roles
+    - name: 'update'
+      raw: apt-get update
+      when: ansible_os_family == 'Debian'
+    - name: 'install python2'
+      raw: apt-get -y install python
+      when: ansible_os_family == 'Debian'
+  roles:
+    - docker
+    - jenkins
+    - ansible
+    - dockerCompose
+    - sonarQube    
+  #post_tasks : After tasks which are in roles                                          

@@ -1,0 +1,12 @@
+---
+
+
+
+- name: Copy docker-compose
+  copy:
+    src: /home/takima/Documents/mael-ninja/resources/ansible/roles/grafana/tasks/docker-compose.yml
+    dest: docker-compose.yml
+
+- name: Installing Grafana & Prometheus
+  raw: "docker-compose up -d"
+  

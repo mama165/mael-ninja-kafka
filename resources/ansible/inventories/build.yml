@@ -1,0 +1,49 @@
+---
+
+build:
+  hosts:
+    training-build:
+#     TODO Change this with your server's url
+      ansible_host: mnana-build.takima.io
+  vars:
+#     TODO Change this with your server's user name
+    ansible_user: centos
+#    Useful to test playbook locally
+#    ansible_port: 383
+#    ansible_ssh_pass: root
+
+#   TODO Change your username/password (see README to encrypt your password)
+    jenkins_admin_username: mael
+#   Current password: admin / vault: ninja
+    jenkins_admin_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30326330373439376437306535623834353930396163303633386335363631643336643531386236
+          6164356637333339383134633663653739616339386233640a363331313761343332643463356536
+          38343064666438386531643065393632653036313637653233633161666533313064303333366436
+          3039323665323034340a373565396335356331363665616239383335653364646536366236666361
+          3638
+
+#   Set your server's os family (RedHat (for CentOS) / Debian)
+    ansible_os_family: RedHat
+    debian_version: stretch
+
+    jenkins_home: /var/lib/jenkins
+    jenkins_hostname: localhost
+    jenkins_http_port: 8080
+    jenkins_plugins:
+      - blueocean
+      - gitlab-plugin
+
+    jenkins_jar_location: /opt/jenkins-cli.jar
+    jenkins_admin_password_file: ""
+    jenkins_admin_token: ""
+    jenkins_admin_token_file: ""
+    jenkins_process_user: jenkins
+    jenkins_process_group: "{{ jenkins_process_user }}"
+    jenkins_connection_delay: 5
+    jenkins_connection_retries: 10
+
+    jenkins_plugin_timeout: 120
+    jenkins_plugins_state: present
+    jenkins_plugin_updates_expiration: 86400
+    base_python_package: "{{ ansible_python_interpreter | default('/usr/bin/python') | basename }}"

@@ -1,0 +1,37 @@
+---
+- name: Log in to Docker registry # Etape affichee dans la console
+  docker_login:
+    registry: https://registry.e-biz.fr/mnana/mael-ninja # URL du repository docker (sur gitlab)
+    username: mnana
+    password: "{{ docker_password }}" # Defini dans les variables (plus bas)
+    reauthorize: yes
+  vars:
+    # Les credentials sont crypte par ansible via ==> ansible-vault encrypt_string --ask-vault-pass --stdin-name docker_password
+    # On passe le résultat
+    docker_password: !vault | 
+          $ANSIBLE_VAULT;1.1;AES256
+          30393665383935626166653364646438303237643739376236643230643933663964393136333461
+          3263333262353234366238313563323439656163633436370a363032613161313138353766656533
+          39396361306431333334363730383166346235353061356439613065393933386565643332613435
+          6633353762656566370a393866333664626665613130306333623933656232653762383061316635
+          6361
+
+- name: Create docker container for db
+  docker_container:
+   name: db
+   image: "registry.e-biz.fr/mnana/mael-ninja/image-prod-db:latest"
+   state: started
+   exposed_ports:
+     - 3306
+   ports:
+     "3306:3306"
+
+- name: Create docker container for webApp
+  docker_container:
+   name: container
+   image: "registry.e-biz.fr/mnana/mael-ninja/image-prod-webapp:latest"
+   state: started
+   exposed_ports:
+     - 80
+   ports:
+     "80:8080"

@@ -1,0 +1,17 @@
+---
+
+prod:
+  hosts:
+    training-build:
+#     TODO Change this with your server's url
+      ansible_host: 149.202.183.169
+  vars:
+#     TODO Change this with your server's user name
+    ansible_user: centos
+#    Useful to test playbook locally
+#    ansible_port: 383
+#    ansible_ssh_pass: root
+
+#   Set your server's os family (RedHat (for CentOS) / Debian)
+    ansible_os_family: RedHat
+    debian_version: stretch

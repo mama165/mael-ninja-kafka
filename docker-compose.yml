@@ -1,0 +1,50 @@
+version: '3'
+
+networks:
+  back:
+
+services:
+  builddocker:
+    image: "maven:3.5-jdk-8"
+    #build: cdb/
+    container_name: builddocker
+    volumes:
+     - ./:/app
+     - ~/.m2:/root/.m2
+    depends_on:
+      - db
+      # Real cmd ==>  ./app/wait-for-it.sh db:3306 -t 40 -- mvn -f /app/cdb verify
+      # Le script wait-for-it va attendre que la DB soit prete (40 sec de timeout)
+      # Ensuite le script de build sera effectue
+      # C'est la commande qui build le projet via maven
+    command: ["./app/wait-for-it.sh", "db:3306", "-t", "40", "--", "mvn", "-f", "/app/cdb", "verify"]
+    networks:
+      - back
+  db:
+    build: cdb/db/
+    container_name: db
+    ports:
+      - "3306:3306"
+    networks:
+      - back
+  web:
+    # build: cdb/tomcat/
+    # On spécifie l'image tomcat à utiliser ici plutôt que dans le dockerfile
+    image : tomcat:9-jre8-slim
+    container_name: web
+    ports:
+      - "80:8080"
+    volumes:
+      # Permet de mapper le contenu de notre webapp (.jar) au contenu du docker
+      # On peut ainsi se passer du dockerfile de Tomcat
+      - ./cdb/target/:/usr/local/tomcat/webapps/
+    networks:
+      - back
+    depends_on:
+      - db
+
+  # Debugging local you can do it with Intellij    
+  #    - "8000:8000"
+  #  command: ["/usr/local/tomcat/bin/catalina.sh", "jpda", "run"]
+  #  environment:
+  #  - JPDA_ADDRESS=8000

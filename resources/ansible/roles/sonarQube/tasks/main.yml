@@ -1,0 +1,17 @@
+---
+
+
+
+- name: Copy docker-compose
+  copy:
+    src: /home/takima/Documents/mael-ninja/resources/ansible/roles/sonarQube/tasks/docker-compose.yml
+    dest: docker-compose.yml
+
+- name: Execute SonarQube
+  raw: "docker-compose up -d"
+
+#- name: Install a SonarQube container into our build server
+#  docker_service:
+#        project_src: docker-compose
+#      #file:
+#      #  path: "/home/takima/Documents/mael-ninja/resources/ansible/roles/sonarQube/tasks/docker-compose.yml"

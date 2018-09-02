@@ -1,0 +1,11 @@
+---
+- name: Default user creation named training
+  user: 
+    name: training 
+    comment: "default user"
+  
+- name: Add SSH key for this user
+  authorized_key:
+    user: training
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

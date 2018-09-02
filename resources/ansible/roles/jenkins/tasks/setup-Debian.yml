@@ -1,0 +1,47 @@
+---
+
+
+- name: Install packages and dependencies
+  apt: name={{ item }} update_cache=yes state=installed
+  with_items:
+    - libfontconfig
+    - libffi-dev
+    - libncurses5-dev
+    - "{{ base_python_package }}-dev"
+    - "{{ base_python_package }}-pip"
+    - python-pycurl
+    - curl
+    - git
+
+
+# Add specified repository into sources list.
+- name: Add backports to the trusted sources list
+  apt_repository:
+    repo: "deb http://ftp.de.debian.org/debian {{debian_version}}-backports main"
+    state: present
+
+# Add specified repository into sources list.
+- name: Add backports to the trusted sources list
+  apt_repository:
+    repo: "deb http://ftp.de.debian.org/debian {{debian_version}}-backports main"
+    state: present
+
+- name: 'install JDK dependencies'
+  raw: "apt install -y -t {{debian_version}}-backports  openjdk-8-jre-headless ca-certificates-java"
+
+- name: 'install openjdk-8-jdk'
+  raw: apt-get -y install openjdk-8-jdk
+
+- name: Add the Jenkins public GPG key to the apt repo
+  apt_key:
+    url: "{{ jenkins_repo_key_url }}"
+    state: present
+
+- name: Add Jenkins to the trusted sources list
+  apt_repository:
+    repo: "{{ jenkins_repo_url }}"
+    update_cache: yes
+    state: present
+
+- name: Install Jenkins server
+  apt: name=jenkins state=installed

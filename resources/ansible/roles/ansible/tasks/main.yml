@@ -1,0 +1,6 @@
+---
+
+- name: Install ansible package (regression in latest version = 2.6.1)
+  pip:
+    name: ansible
+    version: 2.5.0

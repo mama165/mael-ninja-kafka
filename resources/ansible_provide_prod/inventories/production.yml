@@ -1,0 +1,14 @@
+---
+
+production:
+  hosts:
+    training: 
+      ansible_host: 149.202.183.169 # IP FROM PROD SERVER
+  vars:
+    ansible_user: centos
+
+#   Set your server's os family (RedHat (for CentOS) / Debian)
+    ansible_os_family: RedHat
+    debian_version: stretch
+
+    base_python_package: "{{ ansible_python_interpreter | default('/usr/bin/python') | basename }}"

@@ -1,0 +1,15 @@
+---
+
+- hosts: production
+  remote_user: training
+  become: yes
+  gather_facts: no
+  pre_tasks:
+    - name: 'update'
+      raw: apt-get update
+      when: ansible_os_family == 'Debian'
+    - name: 'install python2'
+      raw: apt-get -y install python
+      when: ansible_os_family == 'Debian'
+  roles:
+    - registry

@@ -1,0 +1,41 @@
+---
+
+#- name: UFW install
+# apt:
+#   name: ufw
+#   state: present
+
+- name: Install firewalld package
+  yum:
+    pkg: firewalld
+    state: present
+    
+- name: Enable http
+  firewalld:
+        port: 22/tcp
+        permanent: true
+        state: enabled
+
+- name: Enable https
+  firewalld:
+        service: https
+        permanent: true
+        state: enabled
+
+- name: Enable http
+  firewalld:
+        port: 8080/tcp
+        permanent: true
+        state: enabled 
+
+- name: Enable firewalld service
+  service:
+    name: firewalld
+    enabled: yes
+    #state: started
+
+
+
+#
+#- name: Restart firewalld
+#    service: name=firewalld state=restarted
