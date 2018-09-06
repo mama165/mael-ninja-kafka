@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>fr.takima.cdb</groupId>
+    <artifactId>cdb</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>fr.takima.cdb</groupId>
+  <artifactId>cdb-persistence</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>cdb-persistence</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+    <dependencies>
+      <!-- Spring-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <!-- Spring-->
+      <!-- Querydsl-->
+      <dependency>
+        <groupId>com.querydsl</groupId>
+        <artifactId>querydsl-apt</artifactId>
+        <version>${querydsl.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.querydsl</groupId>
+        <artifactId>querydsl-jpa</artifactId>
+        <version>${querydsl.version}</version>
+      </dependency>
+      <!-- Querydsl-->
+      <!-- MYSQL-->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- MYSQL-->
+      <!-- Child project dependencies-->
+      <dependency>
+        <groupId>fr.takima.cdb</groupId>
+        <artifactId>cdb-model</artifactId>
+      </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,13 @@
+  spring:
+    application:
+      name: spring boot yml example
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/computer-database-db?useSSL=false
+      username: admincdb
+      password: qwerty1234
+    profile:
+      active: dev, local
+
+  server:
+    port: 8080

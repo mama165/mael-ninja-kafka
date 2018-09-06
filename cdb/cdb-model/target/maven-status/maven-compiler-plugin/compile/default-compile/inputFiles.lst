@@ -1,0 +1,14 @@
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/PageRequest.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Type.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Sort.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/dto/PageResponse.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Computer.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Operation.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Page.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Search.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Entity.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/dto/ComputerDTO.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/dto/ComputerResponseDTO.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/target/generated-sources/java/fr/takima/cdb/model/bean/QCompany.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Orientation.java
+/home/takima/Documents/mael-ninja-kafka/cdb/cdb-model/src/main/java/fr/takima/cdb/model/bean/Company.java
